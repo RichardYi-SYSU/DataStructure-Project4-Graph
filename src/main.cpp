@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <utility>
 #include <windows.h>
 using namespace std;
 
@@ -34,8 +37,37 @@ void showMenu()
     cout << "请选择操作：";
 }
 
-/* ================= 主函数 ================= */
 
+//生成Graphviz可视化Dot文件
+static void writeTreeDot(const string& path,
+                         int vertexCount,
+                         const vector<pair<int, int>>& edges,
+                         bool directed)
+{
+    ofstream out(path);
+    if (!out)
+    {
+        cout << "Dot 文件写入失败：" << path << endl;
+        return;
+    }
+
+    out << (directed ? "digraph" : "graph") << " Tree {\n";
+    out << "  node [shape=circle];\n";
+
+    for (int i = 1; i <= vertexCount; ++i)
+    {
+        out << "  " << i << ";\n";
+    }
+
+    const char* link = directed ? " -> " : " -- ";
+    for (const auto& e : edges)
+    {
+        out << "  " << e.first << link << e.second << ";\n";
+    }
+    out << "}\n";
+}
+
+/* ================= 主函数 ================= */
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
@@ -157,13 +189,24 @@ int main()
             cout << "请输入起始顶点：";
             cin >> start;
 
-            DFSStack dfs(amlGraph);
-            dfs.run(start);
+            DFSStack dfsStack(amlGraph);
+            dfsStack.run(start);
 
             TreeBuilder builder(amlGraph->getVexNum());
-            builder.buildFromEdges(dfs.getTreeEdges(), true);
-            //cout << "DFS 生成树（有向邻接表）：" << endl;
+            builder.buildFromEdges(dfsStack.getTreeEdges(), true);
+            cout << "DFS 生成树（有向邻接表）：" << endl;
+            builder.printTree();
+            cout<<endl;
+            cout<<"DFS 生成树（树形输出）"<<endl;
             builder.printTreeAsHierarchy(start);
+
+            string dotPath;
+            cout << "请输入 DFS 生成树 Dot 文件路径（例如 data/dfs_tree.dot）：";
+            cin >> dotPath;
+            writeTreeDot(dotPath,
+                         amlGraph->getVexNum(),
+                         dfsStack.getTreeEdges(),
+                         true);
             break;
         }
 
@@ -185,8 +228,19 @@ int main()
 
             TreeBuilder builder(amlGraph->getVexNum());
             builder.buildFromEdges(bfs.getTreeEdges(), true);
-            //cout << "BFS 生成树（有向邻接表）：" << endl;
+            cout << "BFS 生成树（有向邻接表）：" << endl;
+            builder.printTree();
+            cout<<endl;
+            cout<<"BFS 生成树（树形输出）"<<endl;
             builder.printTreeAsHierarchy(start);
+
+            string dotPath;
+            cout << "请输入 BFS 生成树 Dot 文件路径（例如 data/bfs_tree.dot）：";
+            cin >> dotPath;
+            writeTreeDot(dotPath,
+                         amlGraph->getVexNum(),
+                         bfs.getTreeEdges(),
+                         true);
             break;
         }
 
@@ -200,13 +254,29 @@ int main()
 
             alGraph = new GraphAL(n);
 
-            cout << "请输入每条有向边（起点 终点 权值）：\n";
-            for (int i = 0; i < m; i++)
+            cout << "建立无向图输入1，建立有向图输入0：\n";
+            int sw;
+            cin>>sw;
+            if(sw==1)
             {
-                int u, v, w;
-                cin >> u >> v >> w;
-                alGraph->addEdge(u, v, w);
+                cout<<"请依次输入每条边的两个点、权值（不重复）";
+                for (int i = 0; i < m; i++)
+                {
+                    int u, v, w;
+                    cin >> u >> v >> w;
+                    alGraph->addEdge(u, v, w);
+                    alGraph->addEdge(v, u, w);
+                }
+            }else{
+                cout<<"请依次输入起点、终点、权值";
+                for (int i = 0; i < m; i++)
+                {
+                    int u, v, w;
+                    cin >> u >> v >> w;
+                    alGraph->addEdge(u, v, w);
+                }
             }
+            
 
             int start;
             cout << "请输入最短路径的起始顶点：";

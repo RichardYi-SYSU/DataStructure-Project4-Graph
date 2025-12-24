@@ -1,0 +1,155 @@
+graph Railway{
+
+    // 布局设置
+    graph [
+        layout=neato;
+        overlap=false;
+        splines=true;
+        sep=1.2;
+        esep=0.8;
+        K=1.5;
+        fontsize=18;
+        labelloc="t";
+    ];
+    
+    // 节点样式
+    node [
+        shape=circle;
+        style=filled;
+        fillcolor="#4e79a7";
+        width=0.6;
+        height=0.6;
+        fontsize=10;
+        fontname="Microsoft YaHei";
+        color=white;
+        penwidth=1;
+    ];
+    //边样式
+    edge [
+        color="#e15759";
+        penwidth=1.5;
+        fontsize=7;
+        fontname="Microsoft YaHei";
+    ];
+    
+
+
+    // ===== 节点定义 =====
+    1  [label="1北京"];
+    2  [label="2上海"];
+    3  [label="3天津"];
+    4  [label="4西安"];
+    5  [label="5哈尔滨"];
+    6  [label="6南京"];
+    7  [label="7苏州"];
+    8  [label="8济南"];
+    9  [label="9郑州"];
+    10 [label="10广州"];
+    11 [label="11合肥"];
+    12 [label="12青岛"];
+    13 [label="13太原"];
+    14 [label="14武汉"];
+    15 [label="15深圳"];
+    16 [label="16福州"];
+    17 [label="17南昌"];
+    18 [label="18长春"];
+    19 [label="19重庆"];
+    20 [label="20昆明"];
+    21 [label="21贵阳"];
+    22 [label="22南宁"];
+    23 [label="23厦门"];
+    24 [label="24宁波"];
+    25 [label="25成都"];
+    26 [label="26兰州"];
+    27 [label="27西宁"];
+    28 [label="28长沙"];
+    29 [label="29大连"];
+    30 [label="30乌鲁木齐"];
+    31 [label="31银川"];
+    32 [label="32香港"];
+
+    1--2 [label="1318"]
+    1-- 3 [label="120"]
+    1-- 5 [label="1248"]
+    1-- 6 [label="1023"]
+    1-- 8 [label="410"]
+    1-- 9 [label="693"]
+    1-- 13 [label="508"]
+    1-- 14 [label="1229"]
+    1-- 19 [label="1950"]
+    1-- 25 [label="1880"]
+    1-- 28 [label="1590"]
+    1-- 10 [label="2298"]
+    1-- 30 [label="3140"]
+    1-- 26 [label="1786"]
+    1-- 4 [label="1211"]
+    3-- 8 [label="350"]
+    3-- 6 [label="900"]
+    5-- 18 [label="240"]
+    5-- 29 [label="900"]
+    13-- 4 [label="570"]
+    18-- 29 [label="690"]
+    2-- 6 [label="295"]
+    2-- 7 [label="100"]
+    2-- 8 [label="880"]
+    2-- 10 [label="1795"]
+    2-- 11 [label="430"]
+    2-- 12 [label="710"]
+    2-- 14 [label="810"]
+    2-- 15 [label="1450"]
+    2-- 16 [label="800"]
+    2-- 19 [label="1670"]
+    2-- 23 [label="1100"]
+    2-- 24 [label="150"]
+    2-- 25 [label="1980"]
+    2-- 28 [label="1100"]
+    6-- 7 [label="85"]
+    6-- 11 [label="150"]
+    6-- 14 [label="540"]
+    6-- 19 [label="1370"]
+    7-- 24 [label="250"]
+    8-- 12 [label="390"]
+    11-- 14 [label="360"]
+    11-- 17 [label="340"]
+    12-- 29 [label="1100"]
+    4-- 9 [label="480"]
+    4-- 14 [label="740"]
+    4-- 20 [label="1130"]
+    4-- 25 [label="660"]
+    4-- 26 [label="630"]
+    9-- 14 [label="520"]
+    9-- 19 [label="1060"]
+    9-- 25 [label="1250"]
+    9-- 28 [label="900"]
+    9-- 10 [label="1600"]
+    10-- 14 [label="1069"]
+    10-- 15 [label="102"]
+    10-- 16 [label="870"]
+    10-- 20 [label="1280"]
+    10-- 21 [label="860"]
+    10-- 22 [label="630"]
+    10-- 23 [label="510"]
+    10-- 25 [label="1410"]
+    10-- 28 [label="660"]
+    14-- 19 [label="870"]
+    14-- 25 [label="1150"]
+    14-- 28 [label="350"]
+    15-- 23 [label="520"]
+    16-- 23 [label="250"]
+    17-- 28 [label="340"]
+    19-- 20 [label="1100"]
+    19-- 21 [label="380"]
+    19-- 25 [label="308"]
+    20-- 21 [label="520"]
+    20-- 25 [label="1100"]
+    20-- 30 [label="2760"]
+    21-- 25 [label="650"]
+    25-- 26 [label="830"]
+    25-- 30 [label="2350"]
+    26-- 27 [label="220"]
+    26-- 30 [label="1780"]
+    26-- 31 [label="470"]
+    28-- 20 [label="1090"]
+    32-- 10 [label="140"]
+    32-- 15 [label="30"]
+}

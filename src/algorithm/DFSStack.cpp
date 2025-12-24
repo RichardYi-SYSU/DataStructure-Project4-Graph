@@ -7,7 +7,7 @@ DFSStack::DFSStack(GraphAML* g)
     graph = g;
 }
 
-/* ================= 非递归 DFS（标准实现） ================= */
+/* ================= 非递归 DFS ================= */
 
 void DFSStack::run(int startVertex)
 {
@@ -28,7 +28,7 @@ void DFSStack::run(int startVertex)
     while (!S.isEmpty())
     {
         Frame cur;
-        S.pop(cur);   // ⭐ 每一轮只 pop 一次
+        S.pop(cur);   // 每一轮只 pop 一次
 
         int v = cur.v;
 
@@ -41,8 +41,6 @@ void DFSStack::run(int startVertex)
             if (parent[v] != -1)
                 treeEdges.emplace_back(parent[v], v);
         }
-
-        bool foundChild = false;
 
         // 从 cur.edge 开始，找下一个可以进入的子结点
         while (cur.edge != nullptr)
@@ -63,23 +61,16 @@ void DFSStack::run(int startVertex)
 
             if (!visited[w])
             {
-                // ⭐ 关键：先把“更新后的当前帧”压回去
+                // 先把“更新后的当前帧”压回去
                 S.push(cur);
 
                 parent[w] = v;
                 S.push({w, graph->getFirstEdge(w)});
 
-                foundChild = true;
                 break;
             }
         }
 
-        // 如果 v 还有边没处理，cur 已经被压回
-        // 如果没找到子结点，cur 被自然丢弃（回溯）
-        if (!foundChild)
-        {
-            // 什么都不做，cur 生命周期结束
-        }
     }
 }
 

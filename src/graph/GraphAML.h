@@ -56,10 +56,10 @@ public:
     EdgeNode* getFirstEdge(int v) const;
     int getOtherVertex(const EdgeNode* e, int v) const;
 
-    // 重置边访问标记（多次 DFS / BFS 前用）
+    // 重置边访问标记
     void resetEdgeVisited();
 
-    // 输出图结构（调试用）
+    // 输出图结构
     void print() const;
 };
 

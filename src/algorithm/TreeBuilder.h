@@ -10,8 +10,8 @@
 using namespace std;
 
 /**
- * TreeBuilder
- * 根据遍历得到的“生成树边集”，构造一棵树（邻接表表示）
+ TreeBuilder
+ 根据遍历得到的“生成树边集”，构造一棵树（邻接表表示）
  */
 class TreeBuilder {
 private:
@@ -35,12 +35,13 @@ public:
     // 获取生成树
     GraphAL* getTree() const;
 
-    // 输出树结构（调试 / 报告用）
+    // 输出树结构
     void printTree() const;
 
     void printTreeAsHierarchy(int root)const;
 
     void printSubTree(int v, int depth) const;
+    
     
 };
 

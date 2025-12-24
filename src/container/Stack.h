@@ -1,10 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <vector>
 #include "../graph/GraphAML.h"
-
-using namespace std;
 
 /**
  * 用于非递归 DFS 的栈帧
@@ -17,17 +14,19 @@ struct Frame {
 
 class Stack {
 private:
-    vector<Frame> data;
+    Frame* data;     // 顺序存储的数组
+    int top;         // 栈顶指针
+    int capacity;    // 栈容量
 
 public:
-    Stack() = default;
+    explicit Stack(int cap = 1000);  // 构造函数
+    ~Stack();                        // 析构函数
 
     bool isEmpty() const;
+    bool isFull() const;
 
-    void push(const Frame& f);
-
+    bool push(const Frame& f);
     bool pop(Frame& f);
-
     bool peek(Frame& f) const;
 
     void clear();

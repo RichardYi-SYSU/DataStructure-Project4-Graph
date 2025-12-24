@@ -65,7 +65,7 @@ GraphAL::EdgeNode* GraphAL::getFirstEdge(int v) const
     return vertices[v - 1].first;
 }
 
-/* ================= 输出（调试 / 报告用） ================= */
+/* ================= 输出 ================= */
 
 void GraphAL::print() const
 {

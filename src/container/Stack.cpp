@@ -1,31 +1,55 @@
 #include "Stack.h"
 
-bool Stack::isEmpty() const
+/**
+ * 构造函数
+ */
+Stack::Stack(int cap)
 {
-    return data.empty();
+    capacity = cap;
+    data = new Frame[capacity];
+    top = -1;
 }
 
-void Stack::push(const Frame& f)
+/**
+ * 析构函数
+ */
+Stack::~Stack()
 {
-    data.push_back(f);
+    delete[] data;
+}
+
+bool Stack::isEmpty() const
+{
+    return top == -1;
+}
+
+bool Stack::isFull() const
+{
+    return top == capacity - 1;
+}
+
+bool Stack::push(const Frame& f)
+{
+    if (isFull()) return false;
+    data[++top] = f;
+    return true;
 }
 
 bool Stack::pop(Frame& f)
 {
-    if (data.empty()) return false;
-    f = data.back();
-    data.pop_back();
+    if (isEmpty()) return false;
+    f = data[top--];
     return true;
 }
 
 bool Stack::peek(Frame& f) const
 {
-    if (data.empty()) return false;
-    f = data.back();
+    if (isEmpty()) return false;
+    f = data[top];
     return true;
 }
 
 void Stack::clear()
 {
-    data.clear();
+    top = -1;
 }

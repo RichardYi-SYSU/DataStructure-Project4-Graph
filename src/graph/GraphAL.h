@@ -7,17 +7,12 @@ using namespace std;
 
 /**
  * 邻接表（Adjacency List）
- * 适用于 有向图 / 带权图
  */
 class GraphAL {
 private:
     
     int vexNum;                     // 顶点数
     int edgeNum;                    // 边数
-
-
-
-    
 
 public:
     // 边结点
@@ -56,7 +51,7 @@ public:
     // 获取邻接信息
     EdgeNode* getFirstEdge(int v) const;
 
-    // 输出（调试 / 报告用）
+    // 输出
     void print() const;
 };
 

@@ -60,7 +60,7 @@ void TreeBuilder::printTreeAsHierarchy(int root) const
 
 void TreeBuilder::printSubTree(int v, int depth) const
 {
-    // 缩进（每一层两个空格，可自行调整）
+    // 缩进
     for (int i = 0; i < depth; i++)
         cout << "  ";
 
